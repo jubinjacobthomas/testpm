@@ -1,12 +1,12 @@
-package com.example.pm;
+package com.cognizant.pm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProjectManagerApplication {
+public class PrjctManagerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProjectManagerApplication.class, args);
+		SpringApplication.run(PrjctManagerApplication.class, args);
 	}
 }
