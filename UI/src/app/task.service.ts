@@ -21,6 +21,9 @@ export class TaskService {
   private taskUrl = "http://localhost:8080/task"; 
   private rootUrl = "http://localhost:8080";
 
+  public task = null;
+  public editTaskFlag = false;
+
   constructor(private http: HttpClient) { }
 
   addTask (task: Task): Observable<void> {    
@@ -37,6 +40,21 @@ export class TaskService {
         tap(parentTasks => this.log(`fetched parentTasks`)),
         catchError(this.handleError('getParentTask', []))
       );
+  }
+
+  getTasksByProject(id: number): Observable<Task[]>{
+  return this.http.get<Task[]>(this.rootUrl+"/task/project/"+id)
+      .pipe(
+        tap(Tasks => this.log(`fetched Tasks`)),
+        catchError(this.handleError('getTasks', []))
+      );
+  }
+
+  editTask (task: Task): Observable<any> {
+    return this.http.put(this.taskUrl + "/update", task, httpOptions).pipe(
+      tap(_ => this.log(`updated task`)),
+      catchError(this.handleError<any>('updateUser'))
+    );
   }
 
   /**

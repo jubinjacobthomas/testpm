@@ -5,7 +5,6 @@ import { User } from '../user';
 import { UserService } from '../user.service';
 import { HeroService } from '../hero.service';
 
-import { USERS } from '../mock-user';
 
 
 @Component({
@@ -63,6 +62,30 @@ export class AddUserComponent implements OnInit {
     console.log(" delete ");
     this.users = this.users.filter(u => u !== user);
     this.userService.deleteUser(user.userId).subscribe();
+  }
+
+  sortByFirstName(): void{
+     this.users.sort((a, b) => {
+        if (a.firstName < b.firstName) return -1;
+        else if (a.firstName > b.firstName) return 1;
+        else return 0;
+      });
+  }
+
+  sortByLastName(): void{
+     this.users.sort((a, b) => {
+        if (a.lastName < b.lastName) return -1;
+        else if (a.lastName > b.lastName) return 1;
+        else return 0;
+      });
+  }
+
+  sortById(): void{
+     this.users.sort((a, b) => {
+        if (a.userId < b.userId) return -1;
+        else if (a.userId > b.userId) return 1;
+        else return 0;
+      });
   }
 
 }

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cognizant.pm.dao.User;
@@ -46,8 +45,6 @@ public class UserController {
 		u.setEmployeeId(user.getEmployeeId());
 		u.setFirstName(user.getFirstName());
 		u.setLastName(user.getLastName());
-		u.setProjectId(user.getProjectId());
-		u.setTaskId(user.getTaskId());
 		return userRepository.save(u);
 	}
 	

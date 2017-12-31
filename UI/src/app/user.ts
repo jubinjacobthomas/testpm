@@ -3,6 +3,4 @@ export class User {
 	firstName: string;
 	lastName: string;
 	employeeId: string;
-	projectId: string;
-	taskId: string;
 }

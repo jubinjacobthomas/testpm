@@ -10,17 +10,17 @@
 		</td>
 		<td>
 			<label>Sort By</label>
-			<button class="btn btn-default">StartDate</button>
-			<button class="btn btn-default">EndDate</button>
-			<button class="btn btn-default">Priority</button>
-			<button class="btn btn-default">Completed</button>
+			<button class="btn btn-default" (click)="sortByStartDate()">StartDate</button>
+			<button class="btn btn-default" (click)="sortByEndDate()">EndDate</button>
+			<button class="btn btn-default" (click)="sortByPriority()">Priority</button>
+			<button class="btn btn-default" (click)="sortByCompleted()">Completed</button>
 		</td>	
 	</tr>
 	<tr> <hr style="border-top: dotted 2px; width: 1500%" /> </tr>
 </table>
 <br>
 
-<div>
+<div *ngFor="let task of tasks">
 	<table style="border-collapse: separate; border-spacing: 8px;">
 	<tr>
 		<td class="td"><label>Task</label></td>
@@ -30,13 +30,13 @@
 		<td class="td"><label>End</label></td>
 	</tr>
 	<tr>
-		<td class="td1"><label>Name:</label></td>
-		<td class="td1"><label>Name:</label></td>
-		<td class="td"><label>Name:</label></td>
-		<td class="td"><label>Name:</label></td>
-		<td class="td"><label>Name:</label></td>
+		<td class="td1"><label>{{task.taskName}}</label></td>
+		<td class="td1"><label>{{task.parentTaskName}}</label></td>
+		<td class="td"><label>{{task.priority}}</label></td>
+		<td class="td"><label>{{task.startDate | date}}</label></td>
+		<td class="td"><label>{{task.endDate | date}}</label></td>
 		<td>
-			<button class="btn btn-default">Edit</button>
+			<button class="btn btn-default" (click)="editTask(task)">Edit</button>
 			<button class="btn btn-default">EndTask</button>
 		</td>
 	</tr>
@@ -59,7 +59,7 @@
       <ul class="list-group">
       	    <li><input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Search" name="searchText"></li>
       	    <br>
-      	    <button class="list-group-item" *ngFor="let project of projects | filter:searchText" (click)="projectName=project.projectName;projectId=project.projectId" data-dismiss="modal">{{project.projectName}}</button>
+      	    <button class="list-group-item" *ngFor="let project of projects | filter:searchText" (click)="projectName=project.projectName;getTasksByProject(project.projectId)" data-dismiss="modal">{{project.projectName}}</button>
 	  </ul>
     </div>
     <div class="modal-footer">

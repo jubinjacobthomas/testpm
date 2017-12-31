@@ -21,6 +21,8 @@ export class AddProjectComponent implements OnInit {
   projects: Project[];
   project: Object = {};
 
+  enableDate: boolean = false;
+
   constructor(private userService: UserService,private projectService: ProjectService) { 
   }
 
@@ -40,23 +42,70 @@ export class AddProjectComponent implements OnInit {
   }
 
   addProject(project: Project): void{
+    console.log(project);
   	this.projectService.addProject(project)
       .subscribe(project => {
         this.projects.push(project);
       });
   }
 
+  deleteProject(project: Project): void{
+    console.log(" delete ");
+    this.projects = this.projects.filter(p => p !== project);
+    this.projectService.deleteProject(project.projectId).subscribe();
+  }
+
+  editProject(project: Project): void{
+    this.editProjectFlag = true;
+    this.project = project;
+  }
+
   onSubmit(project: Project): void{
     console.log(this.editProjectFlag);
     if(this.editProjectFlag){
       this.editProjectFlag = false;
-      /*this.users = this.users.filter(u => u !== user);
-      this.userService.updateUser(user).subscribe(
-        user => {this.users.push(user);})
-*/
+      this.projects = this.projects.filter(p => p !== project);
+      this.projectService.updateProject(project).subscribe(
+        project => {this.projects.push(project);})
     }else{
       this.addProject(project);
     }
+  }
+
+   changeEvent(event: boolean): void{
+    this.enableDate = event;
+  }
+
+  sortByStartDate(): void{
+     this.projects.sort((a, b) => {
+        if (a.startDate < b.startDate) return -1;
+        else if (a.startDate > b.startDate) return 1;
+        else return 0;
+      });
+  }
+
+  sortByEndDate(): void{
+     this.projects.sort((a, b) => {
+        if (a.endDate < b.endDate) return -1;
+        else if (a.endDate > b.endDate) return 1;
+        else return 0;
+      });
+  }
+
+  sortByPriority(): void{
+     this.projects.sort((a, b) => {
+        if (a.priority < b.priority) return -1;
+        else if (a.priority > b.priority) return 1;
+        else return 0;
+      });
+  }
+
+  sortByCompleted(): void{
+     /*this.projects.sort((a, b) => {
+        if (a.status < b.status) return -1;
+        else if (a.status > b.status) return 1;
+        else return 0;
+      });*/
   }
 
 }

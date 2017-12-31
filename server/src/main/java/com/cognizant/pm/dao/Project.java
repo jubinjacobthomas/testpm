@@ -1,10 +1,18 @@
-package com.cognizant.pm.model;
+package com.cognizant.pm.dao;
 
 import java.util.Date;
 
-public class ProjectResponse {
-	
-private Integer projectId;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Project {
+
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer projectId;
 	
 	private String project;
 	
@@ -14,25 +22,14 @@ private Integer projectId;
 	
 	private Integer priority;
 	
-	private Integer taskNumber;
-	
-	private Integer completedTaskNumber;
-	
+	private Integer userId;
 
-	public Integer getTaskNumber() {
-		return taskNumber;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setTaskNumber(Integer taskNumber) {
-		this.taskNumber = taskNumber;
-	}
-
-	public Integer getCompletedTaskNumber() {
-		return completedTaskNumber;
-	}
-
-	public void setCompletedTaskNumber(Integer completedTaskNumber) {
-		this.completedTaskNumber = completedTaskNumber;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	public Integer getProjectId() {
@@ -74,5 +71,6 @@ private Integer projectId;
 	public void setPriority(Integer priority) {
 		this.priority = priority;
 	}
-
+	
+	
 }

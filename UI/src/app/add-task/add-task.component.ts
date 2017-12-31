@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router,ActivatedRoute,NavigationEnd } from '@angular/router';
+import 'rxjs/add/operator/filter';
 
 import { UserService } from '../user.service';
 import { ProjectService } from '../project.service';
@@ -23,9 +25,19 @@ export class AddTaskComponent implements OnInit {
   task: Object = {};
 
   disable: boolean = false;
+  editTaskFlag : boolean = false;
   
 
-  constructor(private userService: UserService, private projectService: ProjectService, private taskService: TaskService) { 
+  constructor(private userService: UserService, private projectService: ProjectService, private taskService: TaskService,
+    router:Router, route:ActivatedRoute) { 
+    
+    if(this.taskService.task != null){
+     // console.log(this.taskService.task);
+      this.task = this.taskService.task;
+      this.taskService.task = null;
+      this.editTaskFlag = this.taskService.editTaskFlag;
+      this.taskService.editTaskFlag = false;
+    }
   }
 
   ngOnInit() {
@@ -45,8 +57,13 @@ export class AddTaskComponent implements OnInit {
   }
 
   addTask(task: Task): void {
-    console.log(task);
+   // console.log(task);
     this.taskService.addTask(task).subscribe();
+  }
+
+  editTask(task : Task): void {
+    this.taskService.editTask(task).subscribe();
+    this.editTaskFlag = false;
   }
 
   changeEvent(event: boolean): void{

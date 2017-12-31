@@ -11,5 +11,6 @@ export class Task{
 	userName: string;
 	userId: number;
 	priority: number;
+	status: string;
 
 }

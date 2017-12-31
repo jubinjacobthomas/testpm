@@ -1,5 +1,5 @@
 <div>
-	<form #addUserForm="ngForm" (submit)="onSubmit(user)">
+	<form #addUserForm="ngForm">
 		<table>
 			<tr>
 				<td>
@@ -58,9 +58,9 @@
 				</td>
 				<td>
 					<label class="form-group">&nbsp;&nbsp;Sort&nbsp;</label>
-					<button class="btn btn-default">Firstname</button>
-					<button class="btn btn-default">LastName</button>
-					<button class="btn btn-default">Id</button>
+					<button class="btn btn-default" (click)="sortByFirstName()">Firstname</button>
+					<button class="btn btn-default" (click)="sortByLastName()">LastName</button>
+					<button class="btn btn-default" (click)="sortById()">Id</button>
 				</td>
 			</tr>
 			<tr> <hr style="border-top: dotted 2px; width: 270%" /> </tr>
@@ -71,7 +71,7 @@
 		   <table>
 			<tr>
 				<td colspan="2">
-					<input class="form-control" [(ngModel)]="user.firstName" placeholder="firstName" readonly>
+					<input class="form-control" [(ngModel)]="user.firstName" placeholder="firstName" readonly #test="ngModel">
 				</td>
 				<td> &nbsp;&nbsp;&nbsp;&nbsp; <button class="btn btn-default" (click)="editUser(user)">Edit</button></td>
 			</tr>

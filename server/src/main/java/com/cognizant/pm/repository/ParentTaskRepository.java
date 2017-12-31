@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.cognizant.pm.dao.ParentTask;
 
-public interface ParentTaskRepository extends CrudRepository<ParentTask, Long> {
+public interface ParentTaskRepository extends CrudRepository<ParentTask, Integer> {
 
 }

@@ -29,12 +29,27 @@ export class ProjectService {
   }
 
   addProject(project: Project): Observable<Project> {
-    console.log(project);
+    //console.log(project);
     return this.http.post<Project>(this.rootUrl, project, httpOptions).pipe(
       tap((project: Project) => this.log(`added project}`)),
       catchError(this.handleError<Project>('addProject'))
     );
   }
+
+  deleteProject(projectId: number): any {
+    return this.http.delete<any>(this.rootUrl + "/"+projectId, httpOptions).pipe(
+      tap(_ => this.log(`deleted project `)),
+      catchError(this.handleError<any>('deleteproject'))
+    );
+  }
+
+  updateProject (project: Project): Observable<any> {
+    return this.http.put(this.rootUrl, project, httpOptions).pipe(
+      tap(_ => this.log(`updated project`)),
+      catchError(this.handleError<any>('updateProject'))
+    );
+  }
+
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

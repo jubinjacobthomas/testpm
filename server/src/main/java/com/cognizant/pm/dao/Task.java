@@ -8,19 +8,51 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Project {
-
+public class Task {
+	
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer taskId;
+	
+	private Integer parentId;
+	
 	private Integer projectId;
 	
-	private String project;
+	private String task;
 	
 	private Date startDate;
 	
 	private Date endDate;
 	
 	private Integer priority;
+	
+	private String status;
+	
+	private Integer userId;
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public Integer getTaskId() {
+		return taskId;
+	}
+
+	public void setTaskId(Integer taskId) {
+		this.taskId = taskId;
+	}
+
+	public Integer getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
+	}
 
 	public Integer getProjectId() {
 		return projectId;
@@ -30,12 +62,12 @@ public class Project {
 		this.projectId = projectId;
 	}
 
-	public String getProject() {
-		return project;
+	public String getTask() {
+		return task;
 	}
 
-	public void setProject(String project) {
-		this.project = project;
+	public void setTask(String task) {
+		this.task = task;
 	}
 
 	public Date getStartDate() {
@@ -61,6 +93,15 @@ public class Project {
 	public void setPriority(Integer priority) {
 		this.priority = priority;
 	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	
 	
+
 }
