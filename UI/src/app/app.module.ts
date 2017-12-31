@@ -11,8 +11,6 @@ import { AddProjectComponent } from './add-project/add-project.component';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { ViewTaskComponent } from './view-task/view-task.component';
 import { UserService }   from './user.service';
-import { HeroService } from './hero.service';
-import { MessageService } from './message.service';
 import { ProjectService } from './project.service'
 
 import {FilterPipe, SortByPipe} from './filter.pipe';
@@ -36,7 +34,7 @@ import { TaskService } from './task.service';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [UserService,HeroService,MessageService, ProjectService, TaskService],
+  providers: [UserService, ProjectService, TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

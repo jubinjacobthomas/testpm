@@ -79,8 +79,8 @@ export class TaskService {
   }
 
   private log(message: string) {
-    //this.messageService.add('HeroService: ' + message);
-    console.log(message);
+    //console.log(message);
+    //TODO: send the error to remote logging infrastructure
   }
 
 }

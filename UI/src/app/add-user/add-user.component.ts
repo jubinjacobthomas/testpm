@@ -3,8 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { User } from '../user';
 import { UserService } from '../user.service';
-import { HeroService } from '../hero.service';
-
 
 
 @Component({
@@ -24,7 +22,6 @@ export class AddUserComponent implements OnInit {
     }
 
   ngOnInit() {
-    //this.getHeroes();
     this.getUsers();
   }
 

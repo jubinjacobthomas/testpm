@@ -50,21 +50,16 @@ export class UserService {
 
   }
 
-  /** Log a HeroService message with the MessageService */
   private log(message: string) {
-    //this.messageService.add('HeroService: ' + message);
-    console.log(message);
+    ///console.log(message);
+    //TODO: send the error to remote logging infrastructure
   }
 
 
 
-  /** POST: add a new hero to the server */
+  /** POST: add a new user to the server */
   addUser (user: User): Observable<User> {
 
-    /*return this.http.post<User>(this.rootUrl + "/add", user, httpOptions).pipe(
-      tap((user: User) => this.log(`added user w/ id=${user.id}`)),
-      catchError(this.handleError<Hero>('addHero'))
-    );*/
     var addUrl = "http://localhost:8080/user/add";
 
     return this.http.post<User>(addUrl, user, httpOptions).pipe(
@@ -83,7 +78,7 @@ export class UserService {
     );
   }
 
-   /** PUT: update the hero on the server */
+   /** PUT: update the user on the server */
   updateUser (user: User): Observable<any> {
     return this.http.put(this.rootUrl + "/update", user, httpOptions).pipe(
       tap(_ => this.log(`updated user`)),

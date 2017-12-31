@@ -67,6 +67,7 @@ export class ProjectService {
   }
 
   private log(message: string) {
-    console.log(message);
+    //console.log(message);
+    //TODO: send the error to remote logging infrastructure
   }
 }
